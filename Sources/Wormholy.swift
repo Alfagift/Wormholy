@@ -37,6 +37,13 @@ public class Wormholy: NSObject
         get { Storage.defaultFilter }
         set { Storage.defaultFilter = newValue }
     }
+    
+    /// Default filter for base URL
+    ///
+    @objc public static var defaultBaseUrlFilter: String? {
+        get { Storage.defaultBaseUrlFilter }
+        set { Storage.defaultBaseUrlFilter = newValue }
+    }
 
     @objc public static func swiftyLoad() {
         NotificationCenter.default.addObserver(forName: fireWormholy, object: nil, queue: nil) { (notification) in

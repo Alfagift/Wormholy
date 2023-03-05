@@ -15,7 +15,9 @@ open class Storage: NSObject {
     public static var limit: NSNumber? = nil
 
     public static var defaultFilter: String? = nil
-    
+
+    public static var defaultBaseUrlFilter: String? = nil
+
     open var requests: [RequestModel] = []
     
     func saveRequest(request: RequestModel?){
@@ -25,14 +27,20 @@ open class Storage: NSObject {
         
         if let index = requests.firstIndex(where: { (req) -> Bool in
             return request?.id == req.id ? true : false
-        }){
+        }) {
             requests[index] = request!
-        }else{
+        } else {
             requests.insert(request!, at: 0)
         }
 
         if let limit = Self.limit?.intValue {
             requests = Array(requests.prefix(limit))
+        }
+        
+        if let defaultBaseUrl = Self.defaultBaseUrlFilter {
+            requests = requests.filter({ requestModel in
+                requestModel.url.contains(defaultBaseUrl)
+            })
         }
         NotificationCenter.default.post(name: newRequestNotification, object: nil)
     }
