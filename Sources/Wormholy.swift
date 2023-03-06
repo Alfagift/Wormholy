@@ -38,18 +38,11 @@ public class Wormholy: NSObject
         set { Storage.defaultFilter = newValue }
     }
     
-    /// Default filter for base URL
+    /// Filter urls that will be appear in the list
     ///
-    @objc public static var defaultBaseUrlFilter: String? {
-        get { Storage.defaultBaseUrlFilter }
-        set { Storage.defaultBaseUrlFilter = newValue }
-    }
-    
-    /// Filter multiple url
-    ///
-    @objc public static var multipleFilterExternalUrl: [String]? {
-        get { Storage.multipleFilterExternalUrl }
-        set { Storage.multipleFilterExternalUrl = newValue }
+    @objc public static var filterOnlyThisUrls: [String]? {
+        get { Storage.filterOnlyThisUrls }
+        set { Storage.filterOnlyThisUrls = newValue }
     }
 
     @objc public static func swiftyLoad() {
