@@ -17,6 +17,8 @@ open class Storage: NSObject {
     public static var defaultFilter: String? = nil
 
     public static var defaultBaseUrlFilter: String? = nil
+    
+    public static var multipleFilterExternalUrl: [String]? = nil
 
     open var requests: [RequestModel] = []
     
@@ -37,15 +39,38 @@ open class Storage: NSObject {
             requests = Array(requests.prefix(limit))
         }
         
-        if let defaultBaseUrl = Self.defaultBaseUrlFilter {
-            requests = requests.filter({ requestModel in
-                requestModel.url.contains(defaultBaseUrl)
-            })
+        if let _ = Self.defaultBaseUrlFilter, let multipleExternalUrl = Self.multipleFilterExternalUrl {
+            setFilterMultipleUrl(urls: multipleExternalUrl)
+        } else if let defaultBaseUrl = Self.defaultBaseUrlFilter {
+            setFilterDefaultUrl(url: defaultBaseUrl)
+        } else if let multipleExternalUrl = Self.multipleFilterExternalUrl {
+            setFilterMultipleUrl(urls: multipleExternalUrl)
         }
+        
         NotificationCenter.default.post(name: newRequestNotification, object: nil)
     }
 
     func clearRequests() {
         requests.removeAll()
     }
+    
+    private func setFilterDefaultUrl(url: String) {
+        requests = requests.filter({ requestModel in
+            requestModel.url.contains(url)
+        })
+    }
+    
+    private func setFilterMultipleUrl(urls: [String]) {
+        var urls = urls
+        if let defaultBaseUrl = Self.defaultBaseUrlFilter {
+            urls.insert(defaultBaseUrl, at: 0)
+        }
+        requests = requests.filter({ request in
+            urls.contains { url in
+                request.url.contains(url)
+            }
+        })
+    }
 }
+
+
