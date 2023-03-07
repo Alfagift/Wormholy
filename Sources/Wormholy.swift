@@ -37,6 +37,13 @@ public class Wormholy: NSObject
         get { Storage.defaultFilter }
         set { Storage.defaultFilter = newValue }
     }
+    
+    /// Filter urls that will be appear in the list
+    ///
+    @objc public static var filterOnlyThisUrls: [String]? {
+        get { Storage.filterOnlyThisUrls }
+        set { Storage.filterOnlyThisUrls = newValue }
+    }
 
     @objc public static func swiftyLoad() {
         NotificationCenter.default.addObserver(forName: fireWormholy, object: nil, queue: nil) { (notification) in
