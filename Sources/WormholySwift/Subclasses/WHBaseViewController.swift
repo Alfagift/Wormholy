@@ -18,6 +18,12 @@ class WHBaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Ensure all bar button items (including back button) use system blue
+        navigationController?.navigationBar.tintColor = .systemBlue
+    }
+    
     
     // MARK: - Loader
     func showLoader(view: UIView) -> UIView{

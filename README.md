@@ -3,7 +3,8 @@
 </p>
 
   [![Language](https://img.shields.io/badge/Swift-5-orange.svg)]()
-  [![Pod version](https://img.shields.io/cocoapods/v/Wormholy.svg?style=flat)](https://cocoapods.org/pods/Wormholy)
+  [![Pod version](https://img.shields.io/badge/Cocoapods-Compatible%20-blue)](https://cocoapods.org/pods/Wormholy)
+  [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-yellow.svg)](https://github.com/Carthage/Carthage)
   
   Start debugging iOS network calls like a wizard, without extra code! Wormholy makes debugging quick and reliable.
   
@@ -28,7 +29,7 @@
 ## Requirements
 ----------------
 
-- iOS 9.0+
+- iOS 12.0+
 - Xcode 10+
 - Swift 4, 4.1, 4.2 and Swift 5
 
@@ -43,6 +44,7 @@ I suggest you install it only in debug mode. The easiest way is with CocoaPods:
 pod 'Wormholy', :configurations => ['Debug']
 ``` 
 
+You can also integrate Wormholy using the Swift Package Manager!
 
 If you want to disable the shake, and fire Wormholy from another point inside your app, you need to set the [environment variable](https://medium.com/@derrickho_28266/xcode-custom-environment-variables-681b5b8674ec) `WORMHOLY_SHAKE_ENABLED` = `NO`, and call this local notification:
 

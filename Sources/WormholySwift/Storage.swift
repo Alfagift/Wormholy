@@ -16,6 +16,8 @@ open class Storage: NSObject {
 
     public static var defaultFilter: String? = nil
     
+    public static var filterOnlyThisUrls: [String]? = nil
+    
     open var requests: [RequestModel] = []
     
     func saveRequest(request: RequestModel?){
@@ -34,6 +36,15 @@ open class Storage: NSObject {
         if let limit = Self.limit?.intValue {
             requests = Array(requests.prefix(limit))
         }
+        
+        if let filterUrls = Self.filterOnlyThisUrls {
+            requests = requests.filter({ request in
+                filterUrls.contains { url in
+                    request.url.contains(url)
+                }
+            })
+        }
+        
         NotificationCenter.default.post(name: newRequestNotification, object: nil)
     }
 
