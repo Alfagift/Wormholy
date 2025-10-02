@@ -29,7 +29,7 @@
 ## Requirements
 ----------------
 
-- iOS 11.0+
+- iOS 12.0+
 - Xcode 10+
 - Swift 4, 4.1, 4.2 and Swift 5
 
@@ -44,6 +44,7 @@ I suggest you install it only in debug mode. The easiest way is with CocoaPods:
 pod 'Wormholy', :configurations => ['Debug']
 ``` 
 
+You can also integrate Wormholy using the Swift Package Manager!
 
 If you want to disable the shake, and fire Wormholy from another point inside your app, you need to set the [environment variable](https://medium.com/@derrickho_28266/xcode-custom-environment-variables-681b5b8674ec) `WORMHOLY_SHAKE_ENABLED` = `NO`, and call this local notification:
 
